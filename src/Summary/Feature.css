@@ -1,13 +1,4 @@
-.main__form {
-    flex: 5;
-    padding: 4px;
-}
-
-.feature__list {
-    list-style: none;
-  }
-
-  .feature__option:not(.feature__selected) {
+.feature__option:not(.feature__selected) {
     cursor: pointer;
   }
 
@@ -23,4 +14,3 @@
   .feature__selected {
     background: #DEDEDE;
   }
-  

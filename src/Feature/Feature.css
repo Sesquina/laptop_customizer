@@ -1,6 +1,8 @@
+  .feature__option:not(.feature__selected) {
+    cursor: pointer;
+  }
 
-
-  li:hover {
+  .feature__option:not(.feature__selected):hover {
     text-shadow: 1px 1px 2px blue;
   }
 

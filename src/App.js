@@ -1,63 +1,98 @@
 import React, { Component } from 'react';
+import Feature from './Feature/Feature';
+import Summary from './Summary/Summary';
+import Header from './Header'
 import './App.css';
-import FEATURES from './index';
-import MainForm from './composition/MainForm'
-import MainSummary from './composition/MainSummary'
+
 
 class App extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            features: FEATURES,
-            selected: { },
-        };
-        this.handleClick = this.handleClick.bind(this)
-        this.total = this.total.bind(this)
+  constructor(props){
+    super(props);
+    this.state = {
+      selected: {
+        Processor: {
+            name: '17th Generation Intel Core HB (7 Core with donut spare)',
+            cost: 700
+          },
+        "Operating System": {
+            name: 'Ubuntu Linux 16.04',
+            cost: 200
+          },
+        "Video Card":{
+            name: 'Toyota Corolla 1.5v',
+            cost: 1150.98
+          },
+        Display: {
+            name: '15.6" UHD (3840 x 2160) 60Hz Bright Lights and Knobs',
+            cost: 1500
+          }
+      },
+      features: {
+        Processor: [
+          {
+            name: '17th Generation Intel Core HB (7 Core with donut spare)',
+            cost: 700
+          },
+          {
+            name: 'Professor X AMD Fire Breather with sidewinder technology',
+            cost: 1200
+          }
+        ],
+        "Operating System": [
+          {
+            name: 'Ubuntu Linux 16.04',
+            cost: 200
+          },
+          {
+            name: 'Bodhi Linux',
+            cost: 300
+          }
+        ],
+        "Video Card": [
+          {
+            name: 'Toyota Corolla 1.5v',
+            cost: 1150.98
+          },
+          {
+            name: 'Mind mild breeze 2000',
+            cost: 1345
+          }
+        ],
+        Display: [
+          {
+            name: '15.6" UHD (3840 x 2160) 60Hz Bright Lights and Knobs',
+            cost: 1500
+          },
+          {
+            name: '15.3" HGTV (3840 x 2160) Home makeover edition',
+            cost: 1400
+          },
+        ]
+      }
     }
+  }
 
-    handleClick( name, cost, title) {
-        const selected = Object.assign({}, this.state.selected);
-        selected[title] = [name, cost]
+  updateFeature(feature, newValue) {
+    const selected = Object.assign({}, this.state.selected);
+    selected[feature] = newValue;
+    this.setState({
+      selected
+    });
+  }
 
-        this.setState({
-            selected
-        });
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <main>
+        <Feature updateFeature={((feature, newValue) =>  this.updateFeature(feature, newValue))} selected={this.state.selected} features={this.state.features}/>
 
-        this.total()
-    }
+         <Summary selected={this.state.selected}/>
+        </main>
 
-    total = () => {
-        let sum = 0
-        Object.keys(this.state.selected).forEach(key => {
-            sum += this.state.selected[key][1]
-        })
-        return sum;
-    }
-
-
-    render () {
-        return (
-            <div className="App">
-                <header role="banner">
-                    <h1>ELF Computing</h1>
-                    <h3>Laptops</h3>
-                    <h5>Customize your laptop</h5>
-                </header>
-                <main role="main">
-                    <MainForm
-                        features={this.state.features}
-                        selected={this.state.selected}
-                        onClick={this.handleClick}
-                    />
-                    <MainSummary
-                        selected={this.state.selected}
-                        total={this.total()}
-                    />
-                </main>
-            </div>
-        );
-    }
-
+      </div>
+    );
+  }
 }
 
-export default App;
+export default App;  

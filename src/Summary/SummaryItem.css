@@ -2,22 +2,22 @@
     font-size: 0.9em;
     display: grid;
     grid-template-areas: "key cost"
-                         "value value";
+                            "value value";
     margin-top: 10px;
     box-shadow: 0 -1px 0 0 rgba(0,0,0,0.2);
-  }
+}
 
-  .summary__option__label {
+.summary__option__label {
     font-weight: bold;
     grid-area: key
-  }
+}
 
-  .summary__option__value {
+.summary__option__value {
     grid-area: value;
     color: lightblue;
-  }
+}
 
-  .summary__option__cost {
+.summary__option__cost {
     grid-area: cost;
     text-align: right;
-  }
+}
