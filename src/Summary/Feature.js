@@ -12,14 +12,16 @@ class Feature extends Component{
             const featureClass = 'feature__option ' + selectedClass;
             return <ListItem />
           });
-          return  <div className="feature" key={key}>
+          return
+          < >
+          <div className="feature" key={key}>
             <div className="feature__name">{key}</div>
             <FeatureList />
           </div>
           <div>
             <List />
           </div>
-
+        </>
        })
 
       };
